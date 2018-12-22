@@ -10,6 +10,10 @@ public class ResourceFile {
 
     private ClassLoader classLoader = getClass().getClassLoader();
 
+    public ResourceFile(){
+
+    }
+
     public ResourceFile(String relative_location) {
         try {
             file = new File(Objects.requireNonNull(this.classLoader.getResource(relative_location)).getFile());
@@ -33,5 +37,16 @@ public class ResourceFile {
             e.printStackTrace();
         }
         return abs_path;
+    }
+
+    public String getResourseDirAbsPath(){
+        //.toURI()
+        try {
+            return (ResourceFile.class.getResource("../../resources/").getFile());
+        }catch(Exception e){
+            Log.error(e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
     }
 }
