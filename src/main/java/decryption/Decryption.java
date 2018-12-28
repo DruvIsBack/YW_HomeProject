@@ -20,7 +20,7 @@ public class Decryption {
     String phrase_2 = "0123456789abcdef";*/
 
 
-    static String Decryption(String str){
+    public static String Decryption(String str){
         String string;
         try {
             Cipher cipher = Cipher.getInstance("DES");
@@ -32,20 +32,28 @@ public class Decryption {
 
             byte[] bytes = Base64.decodeBase64(str.getBytes(StandardCharsets.UTF_8));
 
-            System.out.println("Bytes before de-ciphered (Byte String) => "+ new String(bytes, StandardCharsets.UTF_8));
+
 
             String encoded_str = Base64.encodeBase64String(bytes);
             System.out.println("Bytes before de-ciphered (Encoded String) => "+ encoded_str);
 
+            System.out.println("Bytes before de-ciphered (Byte String) => "+ new String(bytes, StandardCharsets.UTF_8));
 
             cipher.init(Cipher.DECRYPT_MODE, (Key)secret_key);
 
             byte[] o = cipher.doFinal(bytes);
 
             encoded_str= Base64.encodeBase64String(o);
-            System.out.println("Bytes after de-ciphered (DES) => "+ encoded_str);
 
             string = Arrays.toString(o);
+
+            System.out.println("Bytes after de-ciphered (Byte String) => "+ string);
+            System.out.println("Bytes after de-ciphered (DES) => "+ encoded_str);
+
+
+
+
+            string = encoded_str;
         }catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -19,6 +19,6 @@ public class Main {
 
         final SQLiteManager sqLiteManager = new SQLiteManager(abs_path_target_db);
 
-        sqLiteManager.getAllRowsData("SELECT * FROM table_t");
+        sqLiteManager.decryptedRows();
     }
 }
